@@ -7,7 +7,7 @@
 
 </p>
 
-<a align="center" href="https://doc.deno.land/https/deno.land/x/carpenter@v0.0.1/mod.ts">
+<a align="center" href="https://doc.deno.land/https/deno.land/x/carpenter/mod.ts">
 
 Documentation
 
