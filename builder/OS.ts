@@ -45,12 +45,10 @@ export class OS {
      *            .on("windows")
      *             .do(()=>console.log("windows code"));
      * @param name 
-     * @returns this
+     * @returns new instance of OS
      */
-    public on(name: OSName): this{
-        this.name = name;
-        this.isOS = Deno.build.os == this.name;
-        return this;
+    public on(name: OSName): OS {
+        return new OS(name);
     }
 
     /**
