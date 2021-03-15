@@ -9,7 +9,7 @@ export class ARGS {
     private includesAll: boolean;
     private constructor(args: string[]){
         this.args = args;
-        this.includesAll = this.args.every((arg)=>Deno.args.includes(arg));
+        this.includesAll = Deno.args.every((arg)=>Deno.args.includes(arg));
     }
     
     /**
