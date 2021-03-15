@@ -1,4 +1,4 @@
-import { assert, fail } from "https://deno.land/std@0.90.0/testing/asserts.ts";
+import { assert, fail, assertStringIncludes } from "https://deno.land/std@0.90.0/testing/asserts.ts";
 import { OS } from "../mod.ts";
 
 Deno.test("Runs on target request", () => {
@@ -37,4 +37,12 @@ const notThis = Deno.build.os == "darwin" ? "windows" : "darwin";
 Deno.test("Premature Else works", () => {
     const notThis = Deno.build.os == "darwin" ? "windows" : "darwin";
       OS.on(notThis).else(()=>assert("Works"))
+});
+
+Deno.test("Multiple do clauses", () => {
+    let str = "";
+      OS.on(Deno.build.os)
+        .do(()=>str += "Hello ")
+        .do(()=>str += "world");
+    assertStringIncludes(str, "Hello world");
 });
