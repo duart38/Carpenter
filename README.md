@@ -1,21 +1,20 @@
 
-<center> 
-<h1>Carpenter</h1>
 
-![tests](https://img.shields.io/github/workflow/status/duart38/Carpenter/Test%20module?label=Tests&style=for-the-badge)
-![license](https://img.shields.io/github/license/duart38/Carpenter?style=for-the-badge)
-![version](https://img.shields.io/github/v/release/duart38/Carpenter?style=for-the-badge)
+<h1 align="center">Carpenter</h1>
+<p align="center">
+  
+  <img src="https://img.shields.io/github/workflow/status/duart38/Carpenter/Test%20module?label=Tests&style=for-the-badge" />
+  <img src="https://img.shields.io/github/license/duart38/Carpenter?style=for-the-badge" />
+  <img src="https://img.shields.io/github/v/release/duart38/Carpenter?style=for-the-badge" />
 
-</center>
-<center>
+  
+</p>
 
-![documentation](https://img.shields.io/badge/docs-documentation-aqua?style=for-the-badge&url=https://doc.deno.land/https/deno.land/x/carpenter@v0.0.1/mod.ts)
-
-</center>
-
-
-
--> ***[Documentation](https://doc.deno.land/https/deno.land/x/carpenter@v0.0.1/mod.ts)***
+<a align="center" href="https://doc.deno.land/https/deno.land/x/carpenter@v0.0.1/mod.ts">
+  
+  Documentation
+  
+</a>
 
 ## By example
 ### OS specific code
