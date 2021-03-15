@@ -97,13 +97,16 @@ class STR {
   }
 
   /**
-     * Executes run if the last check stack is true.
+     * Executes run if the last check stack is true. updated the stored string if the method returns a string
      * @example STRING("test").contains("est").do((v)=>{...})
      * @param run 
      * @returns 
      */
-  public do(run: (stored: string) => void): this {
-    if (this.lastStackMatched) run(this.value);
+  public do(run: (stored: string) => void | string): this {
+    if (this.lastStackMatched){
+        const t = run(this.value);
+        if(t) this.value = t;
+    }
     return this;
   }
 

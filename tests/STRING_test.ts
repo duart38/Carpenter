@@ -86,3 +86,8 @@ Deno.test("STRING adapt test", () => {
     const t = STRING("hello").adapt((prev: string)=>prev += " world").getValue();
     assertStringIncludes(t, "hello world");
   });
+
+  Deno.test("STRING adapt via do() test", () => {
+    const t = STRING("hello").contains("hello").do((prev: string)=>prev += " world").getValue();
+    assertStringIncludes(t, "hello world");
+  });
