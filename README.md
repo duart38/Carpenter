@@ -64,5 +64,9 @@ STRING("hello")
   .contains("hello").and().contains("x") // false
   .or().isOfSize(5) // true
   .do(() => console.log("OH WOW!!!!")) // true because of OR operator
-;
+
+STRING("hello")
+  .adapt((prev: string)=>prev += " world") // adapts the string.. you may continue with chaining after this
+  .getValue(); // gets the current object value.
+
 ```
