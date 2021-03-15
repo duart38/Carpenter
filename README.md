@@ -13,6 +13,14 @@ Documentation
 
 </a>
 
+## Road 🗺
+- [x] Add ARGS (deno.args) carpenter
+- [x] Add OS (deno.build) carpenter
+- [x] Add STRING carpenter
+- [ ] Add ARRAY carpenter
+- [ ] Add OBJECT carpenter
+- [ ] Add more options to STRING carpenter
+
 ## By example
 
 ### OS specific code
