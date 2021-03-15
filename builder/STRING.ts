@@ -12,11 +12,11 @@ class STR {
      * @returns 
      */
     public has(match: string | RegExp): this {
-        if((typeof match == "string" && this.value.includes(match)) || (match instanceof RegExp && this.value.match(match))){
-            this.lastStackMatched = true;
-        }else{
-            this.lastStackMatched = false;
-        }
+        this.lastStackMatched = 
+            (typeof match == "string" && this.value.includes(match)) ||
+            (match instanceof RegExp && this.value.match(match))
+            ? true 
+            : false;
         return this;
     }
 
