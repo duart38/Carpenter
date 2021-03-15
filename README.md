@@ -1,7 +1,7 @@
 # Carpenter
 Builder-like pattern applied for all things Deno.
 
-## How it looks
+## By example
 ### OS specific code
 ```JavaScript
 import {OS} from "./mod.ts";
