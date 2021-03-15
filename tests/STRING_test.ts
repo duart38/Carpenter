@@ -59,3 +59,22 @@ Deno.test("STRING isOfSize test", () => {
     })
     if(!found) fail("lo not found in hello");
 });
+
+Deno.test("STRING endsWith test", () => {
+    let found = false;
+    STRING("hello").endsWith("o")
+    .do(()=>{
+        assert("ends with 'o'")
+        found = true;
+    })
+    if(!found) fail("does not end with 'o'");
+});
+Deno.test("STRING startsWith test", () => {
+    let found = false;
+    STRING("hello").startsWith("h")
+    .do(()=>{
+        assert("starts with 'h'")
+        found = true;
+    })
+    if(!found) fail("does not starts with 'h'");
+});

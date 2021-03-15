@@ -45,6 +45,30 @@ class STR {
         return this;
     }
 
+    public endsWith(value: string): this{
+        this.lastStackMatched = this.computeWithPrevious(this.value.endsWith(value));
+        return this;
+    }
+
+    public startsWith(value: string): this {
+        this.lastStackMatched = this.computeWithPrevious(this.value.startsWith(value));
+        return this;
+    }
+
+    /**
+     * Returns this objects value.
+     */
+    public getValue(): string {
+        return this.value;
+    }
+    
+    /**
+     * Returns true or false based on the stack of calls.
+     */
+    public evaluate(): boolean {
+        return this.lastStackMatched;
+    }
+
     /**
      * Results in the next call having a logical AND (&&) applied to the result of the last check.
      * @returns itself
