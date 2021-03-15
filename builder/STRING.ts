@@ -108,6 +108,15 @@ class STR {
   }
 
   /**
+   * Adapts the internal string into whatever the provided method returns.
+   * @param run 
+   */
+  public adapt(run: (prev: string)=>string): this {
+    this.value = run(this.value);
+    return this;
+  }
+
+  /**
      * Executes run if the last check stack is false.
      * @example STRING("test").contains("x").do((v)=>{...}).else(()=>{...})
      * @param run 

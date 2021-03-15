@@ -71,6 +71,7 @@ Deno.test("STRING endsWith test", () => {
     });
   if (!found) fail("does not end with 'o'");
 });
+
 Deno.test("STRING startsWith test", () => {
   let found = false;
   STRING("hello").startsWith("h")
@@ -80,3 +81,8 @@ Deno.test("STRING startsWith test", () => {
     });
   if (!found) fail("does not starts with 'h'");
 });
+
+Deno.test("STRING adapt test", () => {
+    const t = STRING("hello").adapt((prev: string)=>prev += " world").getValue();
+    assertStringIncludes(t, "hello world");
+  });
