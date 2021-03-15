@@ -37,7 +37,7 @@ OS.on("windows")
   .do(()=>str += "world");
 ```
 ---
-### command line argument specific code
+### Command line argument specific code
 ```JavaScript
 import {ARGS} from "./mod.ts";
 
@@ -49,4 +49,14 @@ ARGS.on("-h")
 // multiple flags (evaluates when all flags are set)
 ARGS.on("-x", "-a")
     .do(()=> console.log("flag -x and -a was found together"))
+```
+
+### Other types
+```JavaScript
+import {STRING} from "./mod.ts";
+
+STRING("hello")
+    .contains("hello").and().contains("x") // false
+    .or().isOfSize(5) // true
+    .do(()=> console.log("OH WOW!!!!")) // true because of OR operator
 ```
