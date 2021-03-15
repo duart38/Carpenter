@@ -97,7 +97,8 @@ class STR {
   }
 
   /**
-     * Executes run if the last check stack is true. updated the stored string if the method returns a string
+     * Executes run if the last check stack is true. updated the stored string if the method returns a string.
+     * Unlike adapt ( @see adapt ), this method will update the string based on the conditions specified before it
      * @example STRING("test").contains("est").do((v)=>{...})
      * @param run 
      * @returns 
@@ -112,6 +113,7 @@ class STR {
 
   /**
    * Adapts the internal string into whatever the provided method returns.
+   * Unlike the do method, this method will always run regardless of the evaluation before it.
    * @param run {(prev: string)=>string} method that adapts the string
    */
   public adapt(run: (prev: string)=>string): this {
