@@ -38,12 +38,6 @@ let str = "";
 OS.on("windows")
   .do(() => str += "Hello ")
   .do(() => str += "world");
-
-// multiple clauses
-let str = "";
-OS.on("windows")
-  .do(() => str += "Hello ")
-  .do(() => str += "world");
 ```
 
 ---
