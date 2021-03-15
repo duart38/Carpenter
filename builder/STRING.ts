@@ -1,9 +1,22 @@
+enum LOGICAL {
+    AND, OR
+}
 class STR {
     private value: string;
     private lastStackMatched;
+    private previousLogical: LOGICAL; 
+
     constructor(value: string){
         this.value = value;
         this.lastStackMatched = true;
+        this.previousLogical = LOGICAL.AND
+    }
+
+    private computeLogical(onCurrent: boolean): boolean{
+        switch(this.previousLogical){
+            case LOGICAL.AND: return this.lastStackMatched && onCurrent;
+            case LOGICAL.OR:  return this.lastStackMatched || onCurrent;
+        }
     }
 
     /**
@@ -12,11 +25,33 @@ class STR {
      * @returns 
      */
     public has(match: string | RegExp): this {
-        this.lastStackMatched = 
-            (typeof match == "string" && this.value.includes(match)) ||
-            (match instanceof RegExp && this.value.match(match))
-            ? true 
-            : false;
+
+        this.lastStackMatched = this.computeLogical(
+            (
+                (typeof match == "string" && this.value.includes(match)) ||
+                (match instanceof RegExp && this.value.match(match))
+            ) ? true : false
+        );
+
+
+        return this;
+    }
+
+    /**
+     * Results in the next call having a logical AND (&&) applied to the result of the last check.
+     * @returns itself
+     */
+    public and(): this {
+        this.previousLogical = LOGICAL.AND;
+        return this;
+    }
+
+    /**
+     * Results in the next call having a logical OR (||) applied to the result of the last check.
+     * @returns itself
+     */
+    public or(): this {
+        this.previousLogical = LOGICAL.OR;
         return this;
     }
 
