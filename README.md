@@ -3,7 +3,7 @@
 <h1 align="center">Carpenter</h1>
 <p align="center">
   
-  <img src="https://img.shields.io/github/workflow/status/duart38/Carpenter/Test%20module?label=Tests&style=for-the-badge" />
+  <img src="https://img.shields.io/github/workflow/status/duart38/Carpenter/Test%20module?color=yellow&label=Tests&style=for-the-badge" />
   <img src="https://img.shields.io/github/license/duart38/Carpenter?color=yellow&style=for-the-badge" />
   <img src="https://img.shields.io/github/v/release/duart38/Carpenter?style=for-the-badge" />
 
