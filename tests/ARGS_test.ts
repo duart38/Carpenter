@@ -1,7 +1,7 @@
 import { assert, fail, assertStringIncludes } from "https://deno.land/std@0.90.0/testing/asserts.ts";
 import { ARGS } from "../mod.ts";
 
-// run these tests with -x as an argument (deno test -- -x)
+// run these tests with -x and -a as an argument (deno test -- -x -a)
 
 Deno.test("Runs on target request", () => {
     let found = false;
@@ -26,7 +26,7 @@ Deno.test("Runs on chaining request", () => {
 });
 
 Deno.test("Premature Else works", () => {
-      ARGS.on("-notThere").else(()=>assert("Works"))
+      ARGS.on("-notThere").else(()=>assert("Works"));
 });
 
 Deno.test("Multiple do clauses", () => {
@@ -36,3 +36,14 @@ Deno.test("Multiple do clauses", () => {
         .do(()=>str += "world");
     assertStringIncludes(str, "Hello world");
 });
+
+Deno.test("Multiple do clauses", () => {
+  let t;
+    ARGS.on("-x", "-a")
+        .do(()=>{
+          t = true; 
+          assert("found -x and -a");
+        })
+  if(!t) fail("")
+});
+// todo add more flags in "on"
