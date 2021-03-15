@@ -1,6 +1,8 @@
 # Carpenter
+Builder-like pattern applied for all things Deno.
 
 ## How it looks
+### OS specific code
 ```JavaScript
 import {OS} from "./mod.ts";
 
@@ -18,4 +20,18 @@ let str = "";
 OS.on("windows")
   .do(()=>str += "Hello ")
   .do(()=>str += "world");
+```
+---
+### command line argument specific code
+```JavaScript
+import {ARGS} from "./mod.ts";
+
+// basic usage
+ARGS.on("-h")
+    .do(() => some help code here)
+    .else(() => -h was not found);
+
+// multiple flags (evaluates when all flags are set)
+ARGS.on("-x", "-a")
+    .do(()=> console.log("flag -x and -a was found.."))
 ```
