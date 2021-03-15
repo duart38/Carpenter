@@ -2,7 +2,7 @@ enum LOGICAL {
   AND,
   OR,
 }
-class STR {
+export class STR {
   private value: string;
   private lastStackMatched;
   private previousLogical: LOGICAL;
