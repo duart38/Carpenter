@@ -1,10 +1,11 @@
+import type Builder from "../types/Builder.ts";
 /**
  * Deno command line argument specific code builder.
  * @example ARGS.on("-x")
  *              .do(()=>console.log("-x"))
  *              .else(()=>console.log("-x not found"));
  */
-export class ARGS {
+export class ARGS implements Builder<ARGS> {
     private args: string[];
     private includesAll: boolean;
     private constructor(args: string[]){

@@ -1,12 +1,12 @@
 type OSName = "darwin" | "linux" | "windows";
-
+import type Builder from "../types/Builder.ts";
 /**
  * Deno operating system specific code builder.
  * @example OS.on("darwin")
  *            .do(()=>console.log("mac"))
  *            .else(()=>console.log("not mac"));
  */
-export class OS {
+export class OS implements Builder<OS> {
     private name: OSName;
     private isOS: boolean;
     private constructor(name: OSName){
