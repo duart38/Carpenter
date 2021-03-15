@@ -109,7 +109,7 @@ class STR {
 
   /**
    * Adapts the internal string into whatever the provided method returns.
-   * @param run 
+   * @param run {(prev: string)=>string} method that adapts the string
    */
   public adapt(run: (prev: string)=>string): this {
     this.value = run(this.value);
