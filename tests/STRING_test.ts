@@ -49,3 +49,13 @@ Deno.test("STRING Multiple do clauses", () => {
         .do(()=>str += "world");
     assertStringIncludes(str, "Hello world");
 });
+
+Deno.test("STRING isOfSize test", () => {
+    let found = false;
+    STRING("hello").isOfSize(5)
+    .do(()=>{
+        assert("size 5")
+        found = true;
+    })
+    if(!found) fail("lo not found in hello");
+});

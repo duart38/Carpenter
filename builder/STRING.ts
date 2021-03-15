@@ -12,7 +12,7 @@ class STR {
         this.previousLogical = LOGICAL.AND
     }
 
-    private computeLogical(onCurrent: boolean): boolean{
+    private computeWithPrevious(onCurrent: boolean): boolean{
         switch(this.previousLogical){
             case LOGICAL.AND: return this.lastStackMatched && onCurrent;
             case LOGICAL.OR:  return this.lastStackMatched || onCurrent;
@@ -26,15 +26,22 @@ class STR {
      * @returns 
      */
     public contains(match: string | RegExp): this {
-
-        this.lastStackMatched = this.computeLogical(
+        this.lastStackMatched = this.computeWithPrevious(
             (
                 (typeof match == "string" && this.value.includes(match)) ||
                 (match instanceof RegExp && this.value.match(match))
             ) ? true : false
         );
+        return this;
+    }
 
-
+    /**
+     * Checks if a string is of a given size
+     * @param size 
+     * @returns 
+     */
+    public isOfSize(size: number): this {
+        this.lastStackMatched = this.computeWithPrevious(this.value.length == size);
         return this;
     }
 
