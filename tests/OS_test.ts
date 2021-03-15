@@ -36,7 +36,12 @@ const notThis = Deno.build.os == "darwin" ? "windows" : "darwin";
 
 Deno.test("Premature Else works", () => {
     const notThis = Deno.build.os == "darwin" ? "windows" : "darwin";
-      OS.on(notThis).else(()=>assert("Works"))
+    let t;
+      OS.on(notThis).else(()=>{
+        t = true;
+        assert("Works");
+      })
+    if(!t) fail();
 });
 
 Deno.test("Multiple do clauses", () => {
