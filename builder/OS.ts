@@ -16,6 +16,11 @@ export class OS {
         if(!this.isOS) run();
         return this;
     }
+    public on(name: OSName): this{
+        this.name = name;
+        this.isOS = Deno.build.os == this.name;
+        return this;
+    }
 
     static on(name: OSName): OS {
         return new OS(name);
