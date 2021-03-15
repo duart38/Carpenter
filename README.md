@@ -1,6 +1,6 @@
 
 
-<h1 align="center">Carpenter</h1>
+<h1 align="center">Carpenter 🛠</h1>
 <p align="center">
   
   <img src="https://img.shields.io/github/workflow/status/duart38/Carpenter/Test%20module?label=Tests&style=for-the-badge" />
