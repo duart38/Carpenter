@@ -20,11 +20,12 @@ class STR {
     }
 
     /**
-     * checks if the string includes a given.
+     * checks if the string contains the given parameter.
+     * @example STRING("hey").contains("h").do(...)
      * @param match 
      * @returns 
      */
-    public has(match: string | RegExp): this {
+    public contains(match: string | RegExp): this {
 
         this.lastStackMatched = this.computeLogical(
             (
@@ -57,7 +58,7 @@ class STR {
 
     /**
      * Executes run if the last check stack is true.
-     * @example STRING("test").has("est").do((v)=>{...})
+     * @example STRING("test").contains("est").do((v)=>{...})
      * @param run 
      * @returns 
      */
@@ -68,7 +69,7 @@ class STR {
 
     /**
      * Executes run if the last check stack is false.
-     * @example STRING("test").has("x").do((v)=>{...}).else(()=>{...})
+     * @example STRING("test").contains("x").do((v)=>{...}).else(()=>{...})
      * @param run 
      * @returns 
      */
