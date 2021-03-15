@@ -33,5 +33,5 @@ ARGS.on("-h")
 
 // multiple flags (evaluates when all flags are set)
 ARGS.on("-x", "-a")
-    .do(()=> console.log("flag -x and -a was found.."))
+    .do(()=> console.log("flag -x and -a was found together"))
 ```
