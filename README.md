@@ -1,6 +1,8 @@
 # Carpenter
 Builder-like pattern applied for all things Deno.
 
+-> ***[Documentation](https://doc.deno.land/https/deno.land/x/carpenter@v0.0.1/mod.ts)***
+
 ## By example
 ### OS specific code
 ```JavaScript
