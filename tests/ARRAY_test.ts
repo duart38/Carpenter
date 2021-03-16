@@ -32,3 +32,24 @@ Deno.test("Test array thenAppend()", () => {
     }).else(()=>{fail("else clause catch running")});
     if(!called) fail("else clause was not called");
 });
+
+
+Deno.test("Test array logical AND", () => {
+    let called = false;
+    ARRAY(["hello"]).isOfSize(100).and().isOfSize(1)
+    .else(()=>{
+        called = true;
+        assert("correct clause");
+    });
+    if(!called) fail("incorrect clause");
+});
+
+Deno.test("Test array logical OR", () => {
+    let called = false;
+    ARRAY(["hello"]).isOfSize(100).or().isOfSize(1)
+    .do(()=>{
+        called = true;
+        assert("correct clause");
+    });
+    if(!called) fail("incorrect clause");
+});
