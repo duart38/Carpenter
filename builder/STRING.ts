@@ -153,4 +153,4 @@ export class STR implements WritableBuilder<string, STR>, Logical {
  * @param value 
  * @returns 
  */
-export function STRING(value: string){return new STR(value)}
+export function STRING(value: string): STR {return new STR(value)}
