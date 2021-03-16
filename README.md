@@ -19,6 +19,7 @@ Documentation
 - [x] Add OS (deno.build) carpenter
 - [x] Add STRING carpenter
 - [x] Add ARRAY carpenter
+- [x] Add SWITCH carpenter
 - [ ] Add OBJECT carpenter
 - [ ] Add more options to STRING carpenter
 - [ ] Add more interconnections between various carpenters
