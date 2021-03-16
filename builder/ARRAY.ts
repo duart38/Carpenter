@@ -1,3 +1,4 @@
+import { STRING, STR } from "../mod.ts";
 import {WritableBuilder} from "../types/Builder.ts";
 import {LOGICAL, Logical} from "../types/Logical.ts";
 
@@ -64,6 +65,16 @@ export class ARR<I> implements WritableBuilder<Array<I>, ARR<I>>, Logical{
     public contains(...toCheck: I[]): this{
         this.lastStackMatched = this.computeWithPrevious(toCheck.every((x)=> this.value.includes(x)));
         return this;
+    }
+
+    /**
+     * join the array together into a string
+     * @param separator 
+     * @returns a string carpenter
+     * @see STR
+     */
+    public join(separator: string | undefined): STR {
+        return STRING(this.value.join(separator));
     }
 
     public do(run: (currentValue: I[]) => void|I[]): this{

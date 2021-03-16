@@ -64,3 +64,39 @@ Deno.test("Test array contains", () => {
     });
     if(!called) fail("incorrect clause");
 });
+
+Deno.test("Test array do modification", () => {
+    let called = false;
+    ARRAY(["hello", "world", "how are you"])
+    .contains("world", "world").and().contains("how are you")
+    .do((currentValue: string[])=>{
+       return [...currentValue, "X"];
+    }).do((x)=>{
+        called = true;
+        assertArrayIncludes(x, ["X"]);
+    })
+    if(!called) fail("incorrect clause");
+});
+
+Deno.test("Test array do skip", () => {
+    let called = false;
+    ARRAY(["hello", "world", "how are you"])
+    .contains("x")
+    .do(()=>{fail("result should be false")})
+    .else(()=>{
+        called = true;
+        assert("correct clause");
+    });
+    if(!called) fail("incorrect clause");
+});
+
+Deno.test("Test array join", () => {
+    let called = false;
+    ARRAY(["hello", "world", "how are you"])
+    .join(" ")
+    .do((x)=>{
+        called = true;
+        assertStringIncludes(x, "hello world how are you");
+    });
+    if(!called) fail("incorrect clause");
+});
