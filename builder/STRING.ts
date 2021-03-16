@@ -1,8 +1,6 @@
-enum LOGICAL {
-  AND,
-  OR,
-}
-export class STR {
+import {WritableBuilder} from "../types/Builder.ts";
+import {LOGICAL} from "../types/Logical.ts";
+export class STR implements WritableBuilder<string, STR>{
   private value: string;
   private lastStackMatched;
   private previousLogical: LOGICAL;
