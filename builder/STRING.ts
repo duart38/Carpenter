@@ -122,7 +122,7 @@ export class STR {
   }
 
   /**
-     * Executes run if the last check stack is false.
+     * Executes run if the last check stack is false. if the method returns a value it adapts the current string.
      * @example STRING("test").contains("x").do((v)=>{...}).else(()=>{...})
      * @param run 
      * @returns 
