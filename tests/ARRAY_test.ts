@@ -100,3 +100,18 @@ Deno.test("Test array join", () => {
     });
     if(!called) fail("incorrect clause");
 });
+
+Deno.test("Test array chaining", () => {
+    let called = false;
+    ARRAY(["hello"]).contains("hello")
+    .do((x)=>{
+        called = true;
+        assertArrayIncludes(x, ["hello"]);
+    })
+    .else(()=>{fail("incorrect inner clause")})
+    .append("world").contains("world").do((x)=>{
+        assertArrayIncludes(x, ["world"]);
+    })
+    ;
+    if(!called) fail("incorrect clause");
+});
