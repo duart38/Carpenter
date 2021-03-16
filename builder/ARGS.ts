@@ -1,4 +1,4 @@
-import type {Builder} from "../types/Builder.ts";
+import type { Builder } from "../types/Builder.ts";
 /**
  * Deno command line argument specific code builder.
  * @example ARGS.on("-x")

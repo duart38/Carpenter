@@ -1,7 +1,7 @@
-import { ARRAY, ARR } from "../mod.ts";
-import {WritableBuilder} from "../types/Builder.ts";
-import {LOGICAL, Logical} from "../types/Logical.ts";
-export class STR implements WritableBuilder<string, STR>, Logical{
+import { ARR, ARRAY } from "../mod.ts";
+import { WritableBuilder } from "../types/Builder.ts";
+import { LOGICAL, Logical } from "../types/Logical.ts";
+export class STR implements WritableBuilder<string, STR>, Logical {
   private value: string;
   private lastStackMatched;
   private previousLogical: LOGICAL;
@@ -70,7 +70,10 @@ export class STR implements WritableBuilder<string, STR>, Logical{
    * @returns ARR<string>
    * @see ARR
    */
-  public split(separator: string | RegExp, limit?: number | undefined): ARR<string>{
+  public split(
+    separator: string | RegExp,
+    limit?: number | undefined,
+  ): ARR<string> {
     return ARRAY(this.value.split(separator, limit));
   }
 
@@ -114,9 +117,9 @@ export class STR implements WritableBuilder<string, STR>, Logical{
      * @returns 
      */
   public do(run: (stored: string) => void | string): this {
-    if (this.lastStackMatched){
-        const t = run(this.value);
-        if(t) this.value = t;
+    if (this.lastStackMatched) {
+      const t = run(this.value);
+      if (t) this.value = t;
     }
     return this;
   }
@@ -126,7 +129,7 @@ export class STR implements WritableBuilder<string, STR>, Logical{
    * Unlike the do method, this method will always run regardless of the evaluation before it.
    * @param run {(prev: string)=>string} method that adapts the string
    */
-  public adapt(run: (prev: string)=>string): this {
+  public adapt(run: (prev: string) => string): this {
     this.value = run(this.value);
     return this;
   }
@@ -140,7 +143,7 @@ export class STR implements WritableBuilder<string, STR>, Logical{
   public else(run: (stored: string) => void | string): this {
     if (!this.lastStackMatched) {
       const t = run(this.value);
-      if(t) this.value = t;
+      if (t) this.value = t;
     }
     return this;
   }

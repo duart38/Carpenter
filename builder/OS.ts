@@ -1,5 +1,5 @@
 type OSName = "darwin" | "linux" | "windows";
-import type {Builder} from "../types/Builder.ts";
+import type { Builder } from "../types/Builder.ts";
 /**
  * Deno operating system specific code builder.
  * @example OS.on("darwin")

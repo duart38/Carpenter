@@ -1,9 +1,9 @@
 import {
   assert,
+  assertArrayIncludes,
+  assertEquals,
   assertStringIncludes,
   fail,
-  assertEquals,
-  assertArrayIncludes
 } from "https://deno.land/std@0.90.0/testing/asserts.ts";
 import { STRING } from "../mod.ts";
 
@@ -85,34 +85,36 @@ Deno.test("STRING startsWith test", () => {
 });
 
 Deno.test("STRING adapt test", () => {
-    const t = STRING("hello").adapt((prev: string)=>prev += " world").getValue();
-    assertStringIncludes(t, "hello world");
-  });
+  const t = STRING("hello").adapt((prev: string) => prev += " world")
+    .getValue();
+  assertStringIncludes(t, "hello world");
+});
 
-  Deno.test("STRING adapt via do() test", () => {
-    const t = STRING("hello").contains("hello").do((prev: string)=>prev += " world").getValue();
-    assertStringIncludes(t, "hello world");
-  });
+Deno.test("STRING adapt via do() test", () => {
+  const t = STRING("hello").contains("hello").do((prev: string) =>
+    prev += " world"
+  ).getValue();
+  assertStringIncludes(t, "hello world");
+});
 
-  Deno.test("STRING does not change if do method is not reached", () => {
-    const t = STRING("hello")
+Deno.test("STRING does not change if do method is not reached", () => {
+  const t = STRING("hello")
     .contains("x")
-    .do((prev: string)=>prev += " world").getValue();
-    assertStringIncludes(t, "hello");
-  });
+    .do((prev: string) => prev += " world").getValue();
+  assertStringIncludes(t, "hello");
+});
 
-  Deno.test("STRING evaluates", () => {
-    const t = STRING("hello")
-    .contains("x").evaluate()
+Deno.test("STRING evaluates", () => {
+  const t = STRING("hello")
+    .contains("x").evaluate();
 
-    assertEquals(t, false);
-    assertEquals(STRING("hello").contains("he").evaluate(), true);
-  });
+  assertEquals(t, false);
+  assertEquals(STRING("hello").contains("he").evaluate(), true);
+});
 
-
-  Deno.test("STRING split", () => {
-    STRING("hello,world")
-    .split(",").do((x)=>{
-      assertArrayIncludes(x, ["hello", "world"])
+Deno.test("STRING split", () => {
+  STRING("hello,world")
+    .split(",").do((x) => {
+      assertArrayIncludes(x, ["hello", "world"]);
     });
-  });
+});
