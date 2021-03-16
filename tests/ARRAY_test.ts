@@ -53,3 +53,14 @@ Deno.test("Test array logical OR", () => {
     });
     if(!called) fail("incorrect clause");
 });
+
+Deno.test("Test array contains", () => {
+    let called = false;
+    ARRAY(["hello", "world", "how are you"])
+    .contains("world", "world").and().contains("how are you")
+    .do(()=>{
+        called = true;
+        assert("correct clause");
+    });
+    if(!called) fail("incorrect clause");
+});

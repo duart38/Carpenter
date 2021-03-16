@@ -56,6 +56,16 @@ export class ARR<I> implements WritableBuilder<Array<I>, ARR<I>>, Logical{
         return this;
     }
 
+    /**
+     * Checks if the array includes all the provided parameters.
+     * @param toCheck 
+     * @returns 
+     */
+    public contains(...toCheck: I[]): this{
+        this.lastStackMatched = this.computeWithPrevious(toCheck.every((x)=> this.value.includes(x)));
+        return this;
+    }
+
     public do(run: (currentValue: I[]) => void|I[]): this{
         if(this.lastStackMatched){
             this.value = run(this.value) || this.value;
