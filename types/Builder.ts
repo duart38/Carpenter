@@ -4,6 +4,6 @@ export interface Builder<I> {
 }
 
 export interface WritableBuilder<A, B> {
-  do: (run: () => void | A) => B;
-  else: (run: () => void | A) => B;
+  do: (run: (currentValue: A) => void | A) => B;
+  else: (run: (currentValue: A) => void | A) => B;
 }
