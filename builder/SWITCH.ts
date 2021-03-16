@@ -20,6 +20,18 @@ export class SWTC<I> {
         if(this.lastStackMatched) run();
         return this;
     }
+    /**
+     * evaluates if the stack is "true", will return whatever the provided method returns.
+     * if the last stack is false this method returns the instance.
+     * @param run 
+     * @returns 
+     */
+    public thenReturn<I>(run :()=>I): I | this{
+        if(this.lastStackMatched){
+            return run();
+        }
+        return this;
+    }
     public default(run: ()=>void){
         if(!this.everMatched) run();
     }
