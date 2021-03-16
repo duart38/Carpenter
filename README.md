@@ -18,9 +18,10 @@ Documentation
 - [x] Add ARGS (deno.args) carpenter
 - [x] Add OS (deno.build) carpenter
 - [x] Add STRING carpenter
-- [ ] Add ARRAY carpenter
+- [x] Add ARRAY carpenter
 - [ ] Add OBJECT carpenter
 - [ ] Add more options to STRING carpenter
+- [ ] Add more interconnections between various carpenters
 
 ## By example
 
