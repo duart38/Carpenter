@@ -10,12 +10,6 @@ export class ARR<I> implements WritableBuilder<Array<I>, ARR<I>>, Logical{
         this.lastStackMatched = true;
         this.previousLogical = LOGICAL.AND;
     }
-and(): this {
-throw new Error("Method not implemented.");
-}
-or(): this {
-throw new Error("Method not implemented.");
-}
     private computeWithPrevious(onCurrent: boolean): boolean {
         switch (this.previousLogical) {
           case LOGICAL.AND:
@@ -23,6 +17,16 @@ throw new Error("Method not implemented.");
           case LOGICAL.OR:
             return this.lastStackMatched || onCurrent;
         }
+    }
+
+    and(): this {
+        this.previousLogical = LOGICAL.AND;
+        return this;
+    }
+
+    or(): this {
+        this.previousLogical = LOGICAL.OR;
+        return this;
     }
 
     /**
