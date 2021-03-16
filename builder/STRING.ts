@@ -1,3 +1,4 @@
+import { ARRAY, ARR } from "../mod.ts";
 import {WritableBuilder} from "../types/Builder.ts";
 import {LOGICAL, Logical} from "../types/Logical.ts";
 export class STR implements WritableBuilder<string, STR>, Logical{
@@ -60,6 +61,17 @@ export class STR implements WritableBuilder<string, STR>, Logical{
       this.value.startsWith(value),
     );
     return this;
+  }
+
+  /**
+   * Splits the string into an array carpenter.
+   * @param separator 
+   * @param limit 
+   * @returns ARR<string>
+   * @see ARR
+   */
+  public split(separator: string | RegExp, limit?: number | undefined): ARR<string>{
+    return ARRAY(this.value.split(separator, limit));
   }
 
   /**
