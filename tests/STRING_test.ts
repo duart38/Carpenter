@@ -2,6 +2,7 @@ import {
   assert,
   assertStringIncludes,
   fail,
+  assertEquals
 } from "https://deno.land/std@0.90.0/testing/asserts.ts";
 import { STRING } from "../mod.ts";
 
@@ -97,4 +98,12 @@ Deno.test("STRING adapt test", () => {
     .contains("x")
     .do((prev: string)=>prev += " world").getValue();
     assertStringIncludes(t, "hello");
+  });
+
+  Deno.test("STRING evaluates", () => {
+    const t = STRING("hello")
+    .contains("x").evaluate()
+
+    assertEquals(t, false);
+    assertEquals(STRING("hello").contains("he").evaluate(), true);
   });
