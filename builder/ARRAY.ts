@@ -38,7 +38,7 @@ export class ARR<I> implements WritableBuilder<Array<I>, ARR<I>>{
     }
 
     /**
-     * Checks if the current value is of size 'n'
+     * Checks if the current array length is of size 'n'
      * @param n 
      */
     public isOfSize(n: number): this{
