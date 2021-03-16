@@ -69,6 +69,10 @@ export class ARR<I> implements WritableBuilder<Array<I>, ARR<I>>, Logical {
     return this;
   }
 
+  public entries(): IterableIterator<[number, I]>{
+    return this.value.entries();
+  }
+
   /**
      * join the array together into a string
      * @param separator 

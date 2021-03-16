@@ -120,3 +120,8 @@ Deno.test("Test array chaining", () => {
     });
   if (!called) fail("incorrect clause");
 });
+
+Deno.test("Test array entries", () => {
+  // merely runs the internal entries. no need for testing
+  ARRAY(["hello"]).entries();
+});
