@@ -26,7 +26,5 @@ jobs:
       
     - name: Setup Deno environment
       uses: denolib/setup-deno@v2.3.0
-    - name: Run ls
-      run: ls
     - name: Run the test
-      run: deno test -A -- -x -a
+      run: sh ./test.sh
