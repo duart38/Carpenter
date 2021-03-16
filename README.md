@@ -60,8 +60,8 @@ ARGS.on("-x", "-a")
     .do(()=> console.log("flag -x and -a was found together"))
 ```
 
-### Other types
-
+### Other carpenters
+For more carpenters see documentation.
 ```JavaScript
 import { STRING } from "./mod.ts";
 
@@ -74,4 +74,16 @@ STRING("hello")
 STRING("hello")
   .adapt((prev: string) => prev += " world") // adapts the string.. you may continue with chaining after this
   .getValue(); // gets the current object value.
+  
+```
+
+```JavaScript
+import { SWITCH } from "./mod.ts";
+
+SWITCH(someValue)
+    .case("one").do(()=>{})
+    .case("chain")
+        .do(()=>{})
+        .do(()=>{})
+    .default(()=>{})
 ```
