@@ -1,7 +1,7 @@
 import {WritableBuilder} from "../types/Builder.ts";
-import {LOGICAL} from "../types/Logical.ts";
+import {LOGICAL, Logical} from "../types/Logical.ts";
 
-export class ARR<I> implements WritableBuilder<Array<I>, ARR<I>>{
+export class ARR<I> implements WritableBuilder<Array<I>, ARR<I>>, Logical{
     private value: I[]
     private lastStackMatched: boolean;
     private previousLogical: LOGICAL;
@@ -10,6 +10,12 @@ export class ARR<I> implements WritableBuilder<Array<I>, ARR<I>>{
         this.lastStackMatched = true;
         this.previousLogical = LOGICAL.AND;
     }
+and(): this {
+throw new Error("Method not implemented.");
+}
+or(): this {
+throw new Error("Method not implemented.");
+}
     private computeWithPrevious(onCurrent: boolean): boolean {
         switch (this.previousLogical) {
           case LOGICAL.AND:

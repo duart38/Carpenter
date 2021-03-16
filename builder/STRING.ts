@@ -1,6 +1,6 @@
 import {WritableBuilder} from "../types/Builder.ts";
-import {LOGICAL} from "../types/Logical.ts";
-export class STR implements WritableBuilder<string, STR>{
+import {LOGICAL, Logical} from "../types/Logical.ts";
+export class STR implements WritableBuilder<string, STR>, Logical{
   private value: string;
   private lastStackMatched;
   private previousLogical: LOGICAL;
