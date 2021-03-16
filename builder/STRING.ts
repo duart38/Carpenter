@@ -127,8 +127,11 @@ export class STR {
      * @param run 
      * @returns 
      */
-  public else(run: (stored: string) => void): this {
-    if (!this.lastStackMatched) run(this.value);
+  public else(run: (stored: string) => void | string): this {
+    if (!this.lastStackMatched) {
+      const t = run(this.value);
+      if(t) this.value = t;
+    }
     return this;
   }
 }
