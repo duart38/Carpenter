@@ -148,4 +148,9 @@ export class STR implements WritableBuilder<string, STR>, Logical {
     return this;
   }
 }
-export const STRING = (value: string) => new STR(value);
+/**
+ * Helper method to initiate a STRING carpenter
+ * @param value 
+ * @returns 
+ */
+export function STRING(value: string){return new STR(value)}

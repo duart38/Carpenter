@@ -119,6 +119,12 @@ export class ARR<I> implements WritableBuilder<Array<I>, ARR<I>>, Logical {
     return this;
   }
 }
+
+/**
+ * Helper method to initiate an ARRAY carpenter
+ * @param value 
+ * @returns 
+ */
 export function ARRAY<I>(val: I[]): ARR<I> {
   return new ARR(val);
 }
