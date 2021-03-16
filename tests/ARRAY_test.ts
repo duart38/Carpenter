@@ -3,6 +3,8 @@ import {
   assertArrayIncludes,
   assertStringIncludes,
   fail,
+  assertEquals,
+  assertNotEquals
 } from "https://deno.land/std@0.90.0/testing/asserts.ts";
 import { ARRAY } from "../mod.ts";
 
@@ -124,4 +126,27 @@ Deno.test("Test array chaining", () => {
 Deno.test("Test array entries", () => {
   // merely runs the internal entries. no need for testing
   ARRAY(["hello"]).entries();
+});
+Deno.test("Test array remove", () => {
+  let called = false;
+  ARRAY(["hello", "world"]).remove("world").do((x)=>{
+    assertArrayIncludes(x, ["hello"]);
+    called = true;
+  });
+
+  ARRAY(["hello", "world"]).remove("x").do((x)=>{
+    assertArrayIncludes(x, ["hello", "world"]);
+    called = true;
+  });
+  if(!called) fail("clause was never called");
+});
+Deno.test("Test array getSection", () => {
+  let called = false;
+  ARRAY([1,2,3,4,5,6,7,8,9,10]).getSection(0,3).do((x)=>{
+    assertEquals(x.length, 3);
+    assertEquals(x[0], 1);
+    assertNotEquals(x, [1,2,3,4,5,6,7,8,9,10]);
+    called = true;
+  })
+  if(!called) fail("clause was never called");
 });

@@ -74,6 +74,28 @@ export class ARR<I> implements WritableBuilder<Array<I>, ARR<I>>, Logical {
   }
 
   /**
+   * Attempts to remove an element in the array if found.
+   * @param element 
+   */
+  public remove(element: I): this {
+    const t = this.value.findIndex((x)=>x === element)
+    if(t != -1) this.value.splice(t, 1);
+    return this;
+  }
+
+  /**
+   * Modifies the array to be a section of itself.
+   * For both start and end, a negative index can be used to indicate an offset from the end of the array.
+   * For example, -2 refers to the second to last element of the array.
+   * @param start 
+   * @param end 
+   */
+  public getSection(start: number, end: number): this {
+    this.value = this.value.slice(start, end);
+    return this;
+  }
+
+  /**
      * join the array together into a string
      * @param separator 
      * @returns a string carpenter
