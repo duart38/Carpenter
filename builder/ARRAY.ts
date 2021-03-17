@@ -3,11 +3,20 @@ import { WritableBuilder } from "../types/Builder.ts";
 import { LOGICAL } from "../types/Logical.ts";
 import LogicalStack from "../types/LogicalStack.ts";
 
-export class ARR<I> extends LogicalStack implements WritableBuilder<Array<I>, ARR<I>> {
+export class ARR<I> extends LogicalStack implements WritableBuilder<Array<I>, ARR<I>>, ArrayLike<I> {
   private value: I[];
+  readonly [n: number]: I;
+  length: number;
+
   constructor(val: I[]) {
     super(true, LOGICAL.AND);
     this.value = val;
+    this.length = val.length;
+  }
+  *[Symbol.iterator] () {
+    for(const item of this.value){
+      yield item;
+    }
   }
   /**
      * Appends regardless of result of the previous chain items.
@@ -15,6 +24,7 @@ export class ARR<I> extends LogicalStack implements WritableBuilder<Array<I>, AR
      */
   public append(...toAdd: I[]): this {
     this.value.push(...toAdd);
+    this.length = this.value.length;
     return this;
   }
 
@@ -23,7 +33,10 @@ export class ARR<I> extends LogicalStack implements WritableBuilder<Array<I>, AR
      * @param toAdd 
      */
   public thenAppend(...toAdd: I[]): this {
-    if (this.lastStackMatched) this.value.push(...toAdd);
+    if (this.lastStackMatched) {
+      this.value.push(...toAdd);
+      this.length = this.value.length;
+    }
     return this;
   }
 
@@ -58,7 +71,10 @@ export class ARR<I> extends LogicalStack implements WritableBuilder<Array<I>, AR
    */
   public remove(element: I): this {
     const t = this.value.findIndex((x)=>x === element)
-    if(t != -1) this.value.splice(t, 1);
+    if(t != -1) {
+      this.value.splice(t, 1);
+      this.length = this.value.length;
+    }
     return this;
   }
 
@@ -71,6 +87,7 @@ export class ARR<I> extends LogicalStack implements WritableBuilder<Array<I>, AR
    */
   public getSection(start: number, end: number): this {
     this.value = this.value.slice(start, end);
+    this.length = this.value.length;
     return this;
   }
 
@@ -87,6 +104,7 @@ export class ARR<I> extends LogicalStack implements WritableBuilder<Array<I>, AR
   public do(run: (currentValue: I[]) => void | I[]): this {
     if (this.lastStackMatched) {
       this.value = run(this.value) || this.value;
+      this.length = this.value.length;
     }
     return this;
   }
@@ -94,6 +112,7 @@ export class ARR<I> extends LogicalStack implements WritableBuilder<Array<I>, AR
   public else(run: (currentValue: I[]) => void | I[]): this {
     if (!this.lastStackMatched) {
       this.value = run(this.value) || this.value;
+      this.length = this.value.length;
     }
     return this;
   }
