@@ -21,6 +21,24 @@ export class VAL extends LogicalStack<VAL> implements WritableBuilder<unknown, V
     }
     return this;
   }
+
+  /**
+   * Checks if this objects value is an instance of the provided
+   * @param c 
+   * @returns 
+   */
+  public isInstanceOf(c: any): this {
+    this.lastStackMatched = this.computeWithPrevious(this.value instanceof c);
+    return this;
+  }
+
 }
 
-export function VALUE(val: unknown) {}
+/**
+ * Helper method for VALUE
+ * @param val 
+ * @returns 
+ */
+export function VALUE(val: unknown): VAL {
+  return new VAL(val);
+}
