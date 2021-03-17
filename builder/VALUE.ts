@@ -1,6 +1,7 @@
 import { LOGICAL } from "../types/Logical.ts";
 import { WritableBuilder } from "../types/Builder.ts";
 import LogicalStack from "../types/LogicalStack.ts";
+type x = "bigint" | "boolean" | "function" | "number" | "object" | "string" | "symbol" | "undefined";
 export class VAL extends LogicalStack<VAL> implements WritableBuilder<unknown, VAL> {
   private value: unknown;
   constructor(val: unknown) {
@@ -29,6 +30,11 @@ export class VAL extends LogicalStack<VAL> implements WritableBuilder<unknown, V
    */
   public isInstanceOf(c: any): this {
     this.lastStackMatched = this.computeWithPrevious(this.value instanceof c);
+    return this;
+  }
+
+  public isTypeOf(c: x){
+    this.lastStackMatched = this.computeWithPrevious(typeof this.value === c);
     return this;
   }
 
