@@ -174,3 +174,37 @@ Deno.test("Test array getSection", () => {
   });
   if (!called) fail("clause was never called");
 });
+
+Deno.test("Test array map", () => {
+  let called = false;
+  ARRAY([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).map((x, i, a)=>{
+    return x * 10;
+  }).do((arr)=>{
+    assertEquals(arr[0], 10);
+    called = true;
+  })
+  if (!called) fail("clause was never called");
+});
+
+Deno.test("Test array thenMap true", () => {
+  let called = false;
+  ARRAY([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).thenMap((x, i, a)=>{
+    return x * 10;
+  }).do((arr)=>{
+    assertEquals(arr[0], 10);
+    called = true;
+  })
+  if (!called) fail("clause was never called");
+});
+Deno.test("Test array thenMap false", () => {
+  let called = false;
+  ARRAY([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+  .isOfSize(1)
+  .thenMap((x)=>{
+    return x * 10;
+  }).else((arr)=>{
+    assertEquals(arr[0], 1);
+    called = true;
+  })
+  if (!called) fail("clause was never called");
+});

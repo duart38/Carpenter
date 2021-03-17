@@ -2,6 +2,8 @@ import { STR, STRING } from "../mod.ts";
 import { WritableBuilder } from "../types/Builder.ts";
 import { LOGICAL } from "../types/Logical.ts";
 import LogicalStack from "../types/LogicalStack.ts";
+type predicate<K> = ((val: K, index?: number, arr?:K[])=>boolean);
+type callBck<K> = ((val: K, index?: number, arr?:K[])=>K | any);
 
 export class ARR<I> extends LogicalStack<ARR<I>>
   implements WritableBuilder<Array<I>, ARR<I>>, ArrayLike<I> {
@@ -55,8 +57,27 @@ export class ARR<I> extends LogicalStack<ARR<I>>
    * @param predicate 
    * @returns 
    */
-     public thenFilter(predicate: (val: I, index?: number, arr?:I[])=>boolean): this {
+    public thenFilter(predicate: predicate<I>): this {
        if(this.lastStackMatched) this.filter(predicate);
+      return this;
+    }
+
+    /**
+     * Performs Map on the inner value regardless of conditions of previous calls.
+     * @param predicate 
+     * @returns 
+     */
+    public map(predicate: callBck<I>): this {
+      this.value = this.value.map(predicate);
+      return this;
+    }
+    /**
+     * Performs map only if the previous calls result in a true value.
+     * @param predicate 
+     * @returns 
+     */
+    public thenMap(predicate: callBck<I>): this {
+      if(this.lastStackMatched) this.map(predicate);
       return this;
     }
 
