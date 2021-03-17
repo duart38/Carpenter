@@ -2,7 +2,7 @@ import { LOGICAL } from "../types/Logical.ts";
 import { WritableBuilder } from "../types/Builder.ts";
 import {ARRAY, ARR} from "../mod.ts";
 import LogicalStack from "../types/LogicalStack.ts";
-export class OBJ extends LogicalStack implements WritableBuilder<Record<string, unknown>, OBJ> {
+export class OBJ extends LogicalStack<OBJ> implements WritableBuilder<Record<string, unknown>, OBJ> {
     private value: Record<string, unknown>
     constructor(value: Record<string, unknown>) {
         super(true, LOGICAL.AND)

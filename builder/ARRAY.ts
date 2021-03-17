@@ -3,7 +3,7 @@ import { WritableBuilder } from "../types/Builder.ts";
 import { LOGICAL } from "../types/Logical.ts";
 import LogicalStack from "../types/LogicalStack.ts";
 
-export class ARR<I> extends LogicalStack implements WritableBuilder<Array<I>, ARR<I>>, ArrayLike<I> {
+export class ARR<I> extends LogicalStack<ARR<I>> implements WritableBuilder<Array<I>, ARR<I>>, ArrayLike<I> {
   private value: I[];
   readonly [n: number]: I;
   length: number;

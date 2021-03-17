@@ -2,7 +2,7 @@ import { ARR, ARRAY } from "../mod.ts";
 import { WritableBuilder } from "../types/Builder.ts";
 import LogicalStack from "../types/LogicalStack.ts";
 import { LOGICAL } from "../types/Logical.ts";
-export class STR extends LogicalStack implements WritableBuilder<string, STR> {
+export class STR extends LogicalStack<STR> implements WritableBuilder<string, STR> {
   private value: string;
   constructor(value: string) {
     super(true, LOGICAL.AND);

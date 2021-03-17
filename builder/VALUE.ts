@@ -1,7 +1,7 @@
 import { LOGICAL } from "../types/Logical.ts";
 import { WritableBuilder } from "../types/Builder.ts";
 import LogicalStack from "../types/LogicalStack.ts";
-export class VAL extends LogicalStack implements WritableBuilder<unknown, VAL> {
+export class VAL extends LogicalStack<VAL> implements WritableBuilder<unknown, VAL> {
   private value: unknown;
   constructor(val: unknown) {
     super(true, LOGICAL.AND);
