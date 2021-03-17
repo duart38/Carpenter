@@ -33,7 +33,7 @@ Deno.test("Test VALUE instanceOf 2", () => {
   if (!ran) fail("no clauses ran");
 });
 
-Deno.test("Test VALUE instanceOf 2", () => {
+Deno.test("Test VALUE isTypeOf", () => {
   VALUE("").isTypeOf("string").do(()=>{assert("string correct")}).else(()=>{fail("string incorrect")});
   VALUE(1).isTypeOf("number").do(()=>{assert("number correct")}).else(()=>{fail("number incorrect")});
   VALUE({}).isTypeOf("object").do(()=>{assert("object correct")}).else(()=>{fail("object incorrect")});
