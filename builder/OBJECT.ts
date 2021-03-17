@@ -36,6 +36,15 @@ export class OBJ extends LogicalStack<OBJ> implements WritableBuilder<Record<str
         return this;
     }
 
+    /**
+     * Prevents further changes on this object
+     * @returns 
+     */
+    public freeze(): this {
+        Object.freeze(this.value);
+        return this;
+    }
+
     public includesKey(key: string): this{
         this.lastStackMatched = this.computeWithPrevious(Object.keys(this.value).includes(key));
         return this;

@@ -1,6 +1,6 @@
 import {
   assert,
-  assertStringIncludes,
+  assertThrows,
   fail,
   assertEquals,
   assertArrayIncludes,
@@ -64,14 +64,24 @@ Deno.test("Test OBJECT do 2", () => {
 });
 
 Deno.test("Test OBJECT isFrozen", () => {
-    let ran = false;
-    let obj = { name: "x" };
-    Object.freeze(obj);
-    OBJECT(obj).isFrozen().do(()=>{
-        assert("correct clause");
-        ran = true;
-    }).else(()=>{
-        fail("incorrect clause");
+  let ran = false;
+  let obj = { name: "x" };
+  Object.freeze(obj);
+  OBJECT(obj)
+    .isFrozen()
+    .do(() => {
+      assert("correct clause");
+      ran = true;
     })
-    if (!ran) fail("clauses not run");
-  });
+    .else(() => {
+      fail("incorrect clause");
+    });
+  if (!ran) fail("clauses not run");
+});
+
+Deno.test("Test OBJECT isFrozen", () => {
+  let obj = { name: "x" };
+  Object.freeze(obj);
+  const t = OBJECT(obj).freeze();
+  assertEquals(t.isFrozen().evaluate(), true);
+});
