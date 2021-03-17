@@ -20,7 +20,8 @@ Documentation
 - [x] Add STRING carpenter
 - [x] Add ARRAY carpenter
 - [x] Add SWITCH carpenter
-- [ ] Add OBJECT carpenter
+- [x] Add OBJECT carpenter
+- [x] Add VALUE carpenter (unknown values)
 - [ ] Add more options to STRING carpenter
 - [ ] Add more interconnections between various carpenters
 
