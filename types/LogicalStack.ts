@@ -1,5 +1,5 @@
 import { LOGICAL, Logical } from "../types/Logical.ts";
-export default abstract class LogicalStack implements Logical {
+export default abstract class LogicalStack<I> implements Logical<I> {
   protected lastStackMatched: boolean;
   protected previousLogical: LOGICAL;
 
@@ -21,18 +21,18 @@ export default abstract class LogicalStack implements Logical {
    * Results in the next call having a logical OR (||) applied to the result of the last check.
    * @returns itself
    */
-  public and(): this {
+  public and(): I {
     this.previousLogical = LOGICAL.AND;
-    return this;
+    return this as unknown as I;
   }
 
   /**
    * Results in the next call having a logical AND (&&) applied to the result of the last check.
    * @returns itself
    */
-  public or(): this {
+  public or(): I {
     this.previousLogical = LOGICAL.OR;
-    return this;
+    return this as unknown as I;
   }
 
     /**
