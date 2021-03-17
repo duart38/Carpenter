@@ -1,24 +1,12 @@
 import { ARR, ARRAY } from "../mod.ts";
 import { WritableBuilder } from "../types/Builder.ts";
-import { LOGICAL, Logical } from "../types/Logical.ts";
-export class STR implements WritableBuilder<string, STR>, Logical {
+import LogicalStack from "../types/LogicalStack.ts";
+import { LOGICAL } from "../types/Logical.ts";
+export class STR extends LogicalStack implements WritableBuilder<string, STR> {
   private value: string;
-  private lastStackMatched;
-  private previousLogical: LOGICAL;
-
   constructor(value: string) {
+    super(true, LOGICAL.AND);
     this.value = value;
-    this.lastStackMatched = true;
-    this.previousLogical = LOGICAL.AND;
-  }
-
-  private computeWithPrevious(onCurrent: boolean): boolean {
-    switch (this.previousLogical) {
-      case LOGICAL.AND:
-        return this.lastStackMatched && onCurrent;
-      case LOGICAL.OR:
-        return this.lastStackMatched || onCurrent;
-    }
   }
 
   /**
@@ -84,30 +72,7 @@ export class STR implements WritableBuilder<string, STR>, Logical {
     return this.value;
   }
 
-  /**
-     * Returns true or false based on the stack of calls.
-     */
-  public evaluate(): boolean {
-    return this.lastStackMatched;
-  }
 
-  /**
-     * Results in the next call having a logical AND (&&) applied to the result of the last check.
-     * @returns itself
-     */
-  public and(): this {
-    this.previousLogical = LOGICAL.AND;
-    return this;
-  }
-
-  /**
-     * Results in the next call having a logical OR (||) applied to the result of the last check.
-     * @returns itself
-     */
-  public or(): this {
-    this.previousLogical = LOGICAL.OR;
-    return this;
-  }
 
   /**
      * Executes run if the last check stack is true. updated the stored string if the method returns a string.
