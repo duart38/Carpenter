@@ -42,6 +42,25 @@ export class ARR<I> extends LogicalStack<ARR<I>>
   }
 
   /**
+   * Performs a filter on the inner value regardless if stack is true or false.
+   * @param predicate 
+   * @returns 
+   */
+  public filter(predicate: (val: I, index?: number, arr?:I[])=>boolean): this {
+    this.value = this.value.filter(predicate);
+    return this;
+  }
+    /**
+   * Performs a filter if the previous chain items result in a "true".
+   * @param predicate 
+   * @returns 
+   */
+     public thenFilter(predicate: (val: I, index?: number, arr?:I[])=>boolean): this {
+       if(this.lastStackMatched) this.filter(predicate);
+      return this;
+    }
+
+  /**
      * Checks if the current array length is of size 'n'
      * @param n 
      */

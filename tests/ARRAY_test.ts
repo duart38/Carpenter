@@ -8,6 +8,30 @@ import {
 } from "https://deno.land/std@0.90.0/testing/asserts.ts";
 import { ARRAY } from "../mod.ts";
 
+
+Deno.test("Test array filter", () => {
+  let called = false;
+  ARRAY([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).filter((x)=>x == 1).do((arr)=>{
+    assertEquals(arr[0], 1);
+    called = true;
+  })
+  if (!called) fail("clause was never called");
+});
+Deno.test("Test array thenFilter", () => {
+  let called = false;
+  ARRAY([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+  .isOfSize(0)
+  .thenFilter((x)=>{fail("incorrect clause"); return false})
+  .or()
+  .isOfSize(10)
+  .thenFilter((x)=>x == 1).do((arr)=>{
+    assertEquals(arr[0], 1);
+    assertEquals(arr.length, 1);
+    called = true;
+  })
+  if (!called) fail("clause was never called");
+});
+
 Deno.test("Test array append()", () => {
   let called = false;
   ARRAY(["hello"]).append("world").do((cv) => {
