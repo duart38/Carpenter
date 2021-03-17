@@ -1,6 +1,5 @@
 import {
   assert,
-  assertThrows,
   fail,
   assertEquals,
   assertArrayIncludes,
