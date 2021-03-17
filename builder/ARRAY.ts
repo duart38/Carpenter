@@ -1,35 +1,14 @@
 import { STR, STRING } from "../mod.ts";
 import { WritableBuilder } from "../types/Builder.ts";
-import { LOGICAL, Logical } from "../types/Logical.ts";
+import { LOGICAL } from "../types/Logical.ts";
+import LogicalStack from "../types/LogicalStack.ts";
 
-export class ARR<I> implements WritableBuilder<Array<I>, ARR<I>>, Logical {
+export class ARR<I> extends LogicalStack implements WritableBuilder<Array<I>, ARR<I>> {
   private value: I[];
-  private lastStackMatched: boolean;
-  private previousLogical: LOGICAL;
   constructor(val: I[]) {
+    super(true, LOGICAL.AND);
     this.value = val;
-    this.lastStackMatched = true;
-    this.previousLogical = LOGICAL.AND;
   }
-  private computeWithPrevious(onCurrent: boolean): boolean {
-    switch (this.previousLogical) {
-      case LOGICAL.AND:
-        return this.lastStackMatched && onCurrent;
-      case LOGICAL.OR:
-        return this.lastStackMatched || onCurrent;
-    }
-  }
-
-  and(): this {
-    this.previousLogical = LOGICAL.AND;
-    return this;
-  }
-
-  or(): this {
-    this.previousLogical = LOGICAL.OR;
-    return this;
-  }
-
   /**
      * Appends regardless of result of the previous chain items.
      * @param toAdd 
