@@ -1,8 +1,17 @@
 import { LOGICAL } from "../types/Logical.ts";
 import { WritableBuilder } from "../types/Builder.ts";
 import LogicalStack from "../types/LogicalStack.ts";
-type x = "bigint" | "boolean" | "function" | "number" | "object" | "string" | "symbol" | "undefined";
-export class VAL extends LogicalStack<VAL> implements WritableBuilder<unknown, VAL> {
+type x =
+  | "bigint"
+  | "boolean"
+  | "function"
+  | "number"
+  | "object"
+  | "string"
+  | "symbol"
+  | "undefined";
+export class VAL extends LogicalStack<VAL>
+  implements WritableBuilder<unknown, VAL> {
   private value: unknown;
   constructor(val: unknown) {
     super(true, LOGICAL.AND);
@@ -33,11 +42,10 @@ export class VAL extends LogicalStack<VAL> implements WritableBuilder<unknown, V
     return this;
   }
 
-  public isTypeOf(c: x){
+  public isTypeOf(c: x) {
     this.lastStackMatched = this.computeWithPrevious(typeof this.value === c);
     return this;
   }
-
 }
 
 /**

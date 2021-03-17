@@ -1,8 +1,8 @@
 import {
   assert,
-  fail,
-  assertEquals,
   assertArrayIncludes,
+  assertEquals,
+  fail,
 } from "https://deno.land/std@0.90.0/testing/asserts.ts";
 import { VALUE } from "../mod.ts";
 
@@ -34,8 +34,24 @@ Deno.test("Test VALUE instanceOf 2", () => {
 });
 
 Deno.test("Test VALUE isTypeOf", () => {
-  VALUE("").isTypeOf("string").do(()=>{assert("string correct")}).else(()=>{fail("string incorrect")});
-  VALUE(1).isTypeOf("number").do(()=>{assert("number correct")}).else(()=>{fail("number incorrect")});
-  VALUE({}).isTypeOf("object").do(()=>{assert("object correct")}).else(()=>{fail("object incorrect")});
-  VALUE(true).isTypeOf("boolean").do(()=>{assert("boolean correct")}).else(()=>{fail("boolean incorrect")});
+  VALUE("").isTypeOf("string").do(() => {
+    assert("string correct");
+  }).else(() => {
+    fail("string incorrect");
+  });
+  VALUE(1).isTypeOf("number").do(() => {
+    assert("number correct");
+  }).else(() => {
+    fail("number incorrect");
+  });
+  VALUE({}).isTypeOf("object").do(() => {
+    assert("object correct");
+  }).else(() => {
+    fail("object incorrect");
+  });
+  VALUE(true).isTypeOf("boolean").do(() => {
+    assert("boolean correct");
+  }).else(() => {
+    fail("boolean incorrect");
+  });
 });

@@ -35,10 +35,10 @@ export default abstract class LogicalStack<I> implements Logical<I> {
     return this as unknown as I;
   }
 
-    /**
+  /**
      * Returns true or false based on the stack of calls.
      */
-    public evaluate(): boolean {
-        return this.lastStackMatched;
-    }
+  public evaluate(): boolean {
+    return this.lastStackMatched;
+  }
 }

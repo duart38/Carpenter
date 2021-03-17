@@ -3,9 +3,10 @@ import { WritableBuilder } from "../types/Builder.ts";
 import { LOGICAL } from "../types/Logical.ts";
 import LogicalStack from "../types/LogicalStack.ts";
 
-export class ARR<I> extends LogicalStack<ARR<I>> implements WritableBuilder<Array<I>, ARR<I>>, ArrayLike<I> {
+export class ARR<I> extends LogicalStack<ARR<I>>
+  implements WritableBuilder<Array<I>, ARR<I>>, ArrayLike<I> {
   private value: I[];
-  readonly [n: number]: I;
+  readonly [n: number]: I
   length: number;
 
   constructor(val: I[]) {
@@ -13,8 +14,8 @@ export class ARR<I> extends LogicalStack<ARR<I>> implements WritableBuilder<Arra
     this.value = val;
     this.length = val.length;
   }
-  *[Symbol.iterator] () {
-    for(const item of this.value){
+  *[Symbol.iterator]() {
+    for (const item of this.value) {
       yield item;
     }
   }
@@ -61,7 +62,7 @@ export class ARR<I> extends LogicalStack<ARR<I>> implements WritableBuilder<Arra
     return this;
   }
 
-  public entries(): IterableIterator<[number, I]>{
+  public entries(): IterableIterator<[number, I]> {
     return this.value.entries();
   }
 
@@ -70,8 +71,8 @@ export class ARR<I> extends LogicalStack<ARR<I>> implements WritableBuilder<Arra
    * @param element 
    */
   public remove(element: I): this {
-    const t = this.value.findIndex((x)=>x === element)
-    if(t != -1) {
+    const t = this.value.findIndex((x) => x === element);
+    if (t != -1) {
       this.value.splice(t, 1);
       this.length = this.value.length;
     }

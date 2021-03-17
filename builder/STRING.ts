@@ -2,7 +2,8 @@ import { ARR, ARRAY } from "../mod.ts";
 import { WritableBuilder } from "../types/Builder.ts";
 import LogicalStack from "../types/LogicalStack.ts";
 import { LOGICAL } from "../types/Logical.ts";
-export class STR extends LogicalStack<STR> implements WritableBuilder<string, STR> {
+export class STR extends LogicalStack<STR>
+  implements WritableBuilder<string, STR> {
   private value: string;
   constructor(value: string) {
     super(true, LOGICAL.AND);
@@ -72,8 +73,6 @@ export class STR extends LogicalStack<STR> implements WritableBuilder<string, ST
     return this.value;
   }
 
-
-
   /**
      * Executes run if the last check stack is true. updated the stored string if the method returns a string.
      * Unlike adapt ( @see adapt ), this method will update the string based on the conditions specified before it
@@ -118,4 +117,6 @@ export class STR extends LogicalStack<STR> implements WritableBuilder<string, ST
  * @param value 
  * @returns 
  */
-export function STRING(value: string): STR {return new STR(value)}
+export function STRING(value: string): STR {
+  return new STR(value);
+}
